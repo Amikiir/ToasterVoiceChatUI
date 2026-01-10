@@ -28,8 +28,9 @@ public class VoiceIndicatorInputHandler : MonoBehaviour
             
             // Adjust height with Ctrl + Plus/Minus
             bool ctrlPressed = keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed;
+            bool altPressed = keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed;
             
-            if (ctrlPressed)
+            if (ctrlPressed && !altPressed)
             {
                 if (keyboard.equalsKey.wasPressedThisFrame || keyboard.numpadPlusKey.wasPressedThisFrame)
                 {
@@ -38,6 +39,18 @@ public class VoiceIndicatorInputHandler : MonoBehaviour
                 else if (keyboard.minusKey.wasPressedThisFrame || keyboard.numpadMinusKey.wasPressedThisFrame)
                 {
                     AdjustHeight(-0.1f);
+                }
+            }
+            // Adjust size with Alt + Plus/Minus
+            else if (altPressed && !ctrlPressed)
+            {
+                if (keyboard.equalsKey.wasPressedThisFrame || keyboard.numpadPlusKey.wasPressedThisFrame)
+                {
+                    AdjustSize(0.1f);
+                }
+                else if (keyboard.minusKey.wasPressedThisFrame || keyboard.numpadMinusKey.wasPressedThisFrame)
+                {
+                    AdjustSize(-0.1f);
                 }
             }
         }
@@ -69,6 +82,20 @@ public class VoiceIndicatorInputHandler : MonoBehaviour
         ShowNotification($"Indicator height: {VoiceChatSettings.IndicatorHeight:F1}");
         
         // Refresh indicators to apply new height
+        if (PlayerActivityIndicator.Instance != null)
+        {
+            PlayerActivityIndicator.Instance.RefreshVoiceIndicatorState();
+        }
+    }
+    
+    private void AdjustSize(float delta)
+    {
+        VoiceChatSettings.IndicatorSize += delta;
+        VoiceChatSettings.IndicatorSize = Mathf.Clamp(VoiceChatSettings.IndicatorSize, 0.5f, 5.0f);
+        
+        ShowNotification($"Indicator size: {VoiceChatSettings.IndicatorSize:F1}");
+        
+        // Refresh indicators to apply new size
         if (PlayerActivityIndicator.Instance != null)
         {
             PlayerActivityIndicator.Instance.RefreshVoiceIndicatorState();

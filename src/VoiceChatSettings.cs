@@ -9,13 +9,13 @@ namespace ToasterVoiceChatUI;
 public class VoiceChatConfig
 {
     // Voice indicator display mode
-    public VoiceIndicatorMode IndicatorMode = VoiceIndicatorMode.Text;
+    public VoiceIndicatorMode IndicatorMode = VoiceIndicatorMode.Image;
     
     // Height of the indicator above player's head (in units)
-    public float IndicatorHeight = 4.0f;
+    public float IndicatorHeight = 3.0f;
     
     // Size multiplier for the indicator
-    public float IndicatorSize = 1.5f;
+    public float IndicatorSize = 1.0f;
 }
 
 // Static accessor for voice chat settings with auto-save

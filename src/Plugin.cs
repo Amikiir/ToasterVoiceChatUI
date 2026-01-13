@@ -9,7 +9,7 @@ namespace ToasterVoiceChatUI;
 public class Plugin : IPuckMod
 {
     public static string MOD_NAME = "ToasterVoiceChatUI";
-    public static string MOD_VERSION = "1.0.0";
+    public static string MOD_VERSION = "1.1.0";
     public static string MOD_GUID = "pw.stellaric.toaster.voicechatui";
 
     static readonly Harmony harmony = new Harmony(MOD_GUID);
@@ -101,4 +101,5 @@ public class Plugin : IPuckMod
         if (DEBUG_MODE)
             Debug.Log($"[{MOD_NAME}] {message}");
     }
+
 }

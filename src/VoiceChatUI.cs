@@ -70,7 +70,6 @@ public static class VoiceChatUI
             GameObject indicatorObj = new GameObject("ToasterVoiceActivityIndicator");
             GameObject.DontDestroyOnLoad(indicatorObj);
             indicatorObj.AddComponent<PlayerActivityIndicator>();
-            indicatorObj.AddComponent<VoiceIndicatorInputHandler>();
         }
         catch (System.Exception e)
         {
